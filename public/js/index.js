@@ -18,25 +18,58 @@ socket.on('disconnect', () => {
 
 
 socket.on("newMessage", (message) => {
-  console.log("newMessage", message);
-  const li = document.createElement('li');
-  li.innerText = `${message.from}: ${message.text}`;
+  // const formatedTime = moment(message.createdAt).format('LT')
+  // console.log("newMessage", message);
+  // const li = document.createElement('li');
+  // li.innerText = `${message.from} ${formatedTime}: ${message.text}`;
+  // document.querySelector('body').appendChild(li);
 
-  document.querySelector('body').appendChild(li);
+  const formatedTime = moment(message.createdAt).format('LT')
+  const template = document.querySelector('#message-template').innerHTML;
+  const html = Mustache.render(template, {
+    from: message.from,
+    text: message.text,
+    createdAt: formatedTime
+  });
+
+  const div = document.createElement('div');
+  div.innerHTML = html;
+
+  document.querySelector('body').appendChild(div);
+
 });
 
 
+
 socket.on("newLocationMessage", (message) => {
+// const formatedTime = moment(message.createdAt).format('LT')
+//   console.log("newLocationMessage", message);
+//   const li = document.createElement('li');
+//   const a = document.createElement('a');
+
+//   a.setAttribute('target', '_blank');
+//   a.setAttribute('href', message.url);
+//   a.innerHTML = 'My current location';
+
+//   li.innerText = `${message.from} ${formatedTime}: `;
+//   li.appendChild(a);
+//   document.querySelector('body').appendChild(li);
+
+  const formatedTime = moment(message.createdAt).format('LT');
   console.log("newLocationMessage", message);
-  const li = document.createElement('li');
-  const a = document.createElement('a');
 
-  a.setAttribute('target', '_blank');
-  a.setAttribute('href', message.url);
-  a.innerHTML = 'My current location';
+  const template = document.querySelector('#location-message-template').innerHTML;
+  const html = Mustache.render(template, {
+    from: message.from,
+    url: message.url,
+    createdAt: formatedTime
+  });
 
-  li.appendChild(a);
-  document.querySelector('body').appendChild(li);
+  const div = document.createElement('div');
+  div.innerHTML = html;
+
+  document.querySelector('body').appendChild(div);
+
 })
 
 

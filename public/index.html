@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
   <title>Chat App</title>
 </head>
-<body>
+
+
+<!-- <body >
   <p>Welcome to the Chat App</p>
 
   <form id="message-form">
@@ -18,5 +21,82 @@
 
   <script src="/socket.io/socket.io.js" ></script>
   <script type="text/javascript" src="/js/index.js"></script>
+</body>  -->
+
+
+
+<!-- <body class="centered-form">
+  <div class="centered-form__form">
+
+    <form action="/chat.html">
+      <div class="form-field"><h3>Join Chat</h3></div>
+
+      <div class="form-field">
+        <label>Display name</label>
+        <input type="text" name="name" autofocus>
+      </div>
+
+      <div class="form-field">
+        <label>Room name</label>
+        <input type="text" name="room" autofocus>
+      </div>
+
+      <div class="form-field">
+        <button>Join</button>
+      </div>
+    </form>
+
+  </div>
+</body> -->
+
+
+
+<body class="centered-form">
+  <div class="centered-form__form">
+
+  <form id="message-form">
+    <div class="form-field">
+      <input type="text" name="message" placeholder="message">
+      <button type="submit" id="submit-btn">Submit</button>
+    </div>
+    <div class="form-field">
+      <button type="button" id="send-location">Send Location</button>
+    </div>
+  </form>
+
+  
+  <script id="message-template" type="text/template">
+      <li class="message">
+        <div class="message__title">
+          <h4>{{from}}</h4>
+          <span>{{createdAt}}</span>
+        </div>
+        <div class="message__body">
+          <p>{{text}}</p>
+        </div>
+      </li>
+  </script>
+
+
+  <script id="location-message-template" type="text/template">
+    <li class="message">
+      <div class="message__title">
+        <h4>{{from}}</h4>
+        <span>{{createdAt}}</span>
+      </div>
+      <div class="message__body">
+        <a href="{{url}}" target="_blank">My current location</a>
+      </div>
+    </li>
+</script>
+
+</div>
+  
+  <script src="/socket.io/socket.io.js" ></script>
+  <script type="text/javascript" src="/js/index.js"></script>
+  <script type="text/javascript" src="/js/libs/moment.js"></script>
+  <script type="text/javascript" src="/js/libs/mustache.js"></script>
 </body> 
+
+
 </html>

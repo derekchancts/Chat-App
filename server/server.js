@@ -43,6 +43,7 @@ io.on('connection', (socket) => {
 
   socket.on("disconnect", () => {
     console.log('User disconnected');
+    io.emit('newMessage', generateMessage("Admin", "User disconnected"))
   });
 
 });
